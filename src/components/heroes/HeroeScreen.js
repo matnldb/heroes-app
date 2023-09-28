@@ -5,7 +5,7 @@ import { getHeroById } from '../../selectors/getHeroById';
 export const HeroeScreen = () => {
   const {id} = useParams(); //lee el parametro, y se desestructura
   const heroe =useMemo(()=>getHeroById(id),[id]) ;
-  const historial = useNavigate();
+  const historial = useNavigate();  
   
   if(!heroe){return <Navigate to='/'/>} //regresa si se escriba un url incorrecto(un id de un heroe inexistente )
   

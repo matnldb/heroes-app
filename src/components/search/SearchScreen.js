@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react'
-import { heroes } from '../../data/heroes'
 import { HeroCard } from '../heroes/HeroCard'
 import { useForm } from '../../hooks/useForm';
 import { useSearchParams } from 'react-router-dom';
@@ -16,7 +15,9 @@ export const SearchScreen = () => {
   const handleSubmit = e=>{
             e.preventDefault();
             let [resultado] = getHeroByName(searchText)
-            setSearchParams(`q=${resultado.superhero}`);
+            if(resultado){
+                setSearchParams(`q=${resultado.superhero}`);
+            }
           }
   return (
     <div>
@@ -41,7 +42,7 @@ export const SearchScreen = () => {
                 <h4>Results</h4>
                 <hr/>   
                  {
-                        heroesFiltrados.map(h=>(
+                      (heroesFiltrados.length!==0) && heroesFiltrados.map(h=>(
                             <HeroCard key={h.id} {...h}/>
                         ))
                  }
